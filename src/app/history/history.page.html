@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="manager"></ion-back-button>
+    </ion-buttons>
+    <ion-title>history</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list>
+    <ion-item button *ngFor="let item of listOfHistory" (click)=navItemPage(item)>
+      <ion-label style="font-size: 20px;">{{item.name}}
+        <p>{{item.quantity}}</p>
+      </ion-label>
+      
+    </ion-item>
+  </ion-list>
+
+</ion-content>

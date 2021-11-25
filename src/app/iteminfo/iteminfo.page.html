@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="history"></ion-back-button>
+    </ion-buttons>
+    <ion-title >{{iName}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <section>
+    <ion-label>{{iName}}</ion-label>
+    <ion-label>{{iQuant}}</ion-label>
+    <ion-label>{{iDate}}</ion-label>
+    <ion-label>Total amount: ${{iTotal | number : '1.2-2'}}</ion-label>
+  </section>
+  
+</ion-content>

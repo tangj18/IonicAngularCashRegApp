@@ -1,20 +1,91 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Blank
+    <ion-title class="title">
+      Cash Register App
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content scrollY="false">
+  <section style="background-color: rgb(231, 231, 231); margin-top: -20px;">
+<ion-grid class="gridborder">
+  <ion-row>
+    <ion-col size="6" class="row1-text" style="font-size: 30px; margin-top: 10px; margin-left: 10px; margin-right: -10px;">
+      {{selectedItem}}
+    </ion-col>
+    <ion-col size="6">
+      <ion-button class="managerButton" routerLink="/manager" routerDirection="forward" (click)="setFalse()" color="danger" style="color:red">Manager</ion-button>
+    </ion-col>
+  </ion-row>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <section>
+  <ion-row>
+    <ion-col size="3">
+      <ion-button size="large" (click)=numPressed(1)>1</ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button size="large" (click)=numPressed(2)>2</ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button size="large" (click)=numPressed(3)>3</ion-button>
+    </ion-col>
+    <ion-col size="3" style="font-size: 20px; margin-top: 6px; text-align: left;">
+      ${{totalPrice | number : '1.2-2'}}
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="3">
+      <ion-button size="large" (click)=numPressed(4)>4</ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button size="large" (click)=numPressed(5)>5</ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button size="large" (click)=numPressed(6)>6</ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button class="buyBtn" color="primary" (click)=purchase()>BUY</ion-button>
+    </ion-col>
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="3">
+      <ion-button size="large" (click)=numPressed(7)>7</ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button size="large" (click)=numPressed(8)>8</ion-button>
+    </ion-col>
+    <ion-col size="3">
+      <ion-button size="large" (click)=numPressed(9)>9</ion-button>
+    </ion-col>
+    
+  </ion-row>
+
+  <ion-row>
+    <ion-col size="3" offset="3">
+      <ion-button size="large" (click)=numPressed(0)>0</ion-button>
+    </ion-col>
+    <ion-col size="6">
+      <ion-button class="clearBtn" size="large" color="danger" (click)=clear()>Clear</ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col size="12" style="text-align: left; font-size: 30px; margin-bottom: -10px;">{{buyQuantity}}</ion-col>
+  </ion-row>
+</section>
+  <ion-row class="productList">
+    <ion-list class="page">
+      <ion-item button *ngFor="let product of listOfProducts" (click)=onSelect(product) [class.highlight]="setBackground(product)">
+        <ion-label style="font-size: 20px;">{{product.name}}
+          <h2 style="color: red;">{{product.price}}</h2>
+        </ion-label>
+        <p>{{product.quantity}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-row>
+
+
+</ion-grid>
+</section>
 </ion-content>

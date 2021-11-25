@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="manager" (click)="setFalse()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>restock</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<ion-input type="text" placeholder="Enter New Quantity" [(ngModel)]="inputText"></ion-input>
+<section>
+  <ion-button fill="clear" (click)=restock()>Restock</ion-button>
+  <ion-button fill="clear" (click)=clear()>Clear</ion-button>
+</section>
+
+<ion-list detail="false">
+  <ion-item *ngFor="let product of listOfProducts" button (click)="onSelect(product)" [class.highlight]="setBackground(product)">
+    <ion-label style="font-size: 20px;">{{product.name}}</ion-label>
+    <ion-note slot="end" style="font-size: 15px;">{{product.quantity}}</ion-note>
+  </ion-item>
+</ion-list>
+
+</ion-content>
