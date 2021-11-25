@@ -8,11 +8,20 @@
 </ion-header>
 
 <ion-content>
-<ion-input type="text" placeholder="Enter New Quantity" [(ngModel)]="inputText"></ion-input>
+<!-- <ion-input type="text" placeholder="Enter New Quantity" [(ngModel)]="inputText"></ion-input>
 <section>
   <ion-button fill="clear" (click)=restock()>Restock</ion-button>
   <ion-button fill="clear" (click)=clear()>Clear</ion-button>
-</section>
+</section> -->
+
+<form #form="ngForm" (ngSubmit)="restock(form)" novalidate>
+    <ion-input type="text" required placeholder="Enter Additional Stock" [(ngModel)]="stock.quantity" name="stock"></ion-input>
+  <section>
+    <button ion-button type="submit" >Restock</button>
+    <button ion-button type="button" (click)="clear()">Clear</button>
+  </section>
+  
+</form>
 
 <ion-list detail="false">
   <ion-item *ngFor="let product of listOfProducts" button (click)="onSelect(product)" [class.highlight]="setBackground(product)">

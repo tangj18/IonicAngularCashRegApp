@@ -14,6 +14,9 @@ export class RestockPage implements OnInit {
   product: Product;
   constructor(private service: ProductsService, private alertController: AlertController) { }
 
+  stock = {
+    quantity: ''
+  }
 
   ngOnInit() {
     this.listOfProducts = this.service.getAllProducts();
@@ -29,7 +32,8 @@ export class RestockPage implements OnInit {
   }
 
   clear(){
-    this.inputText = "";
+    console.log("cancel");
+    this.stock.quantity = "";
   }
 
   setFalse(){
@@ -37,24 +41,25 @@ export class RestockPage implements OnInit {
     this.service.setAllFalse();
   }
 
-  async restock(){
+  async restock(form){
+    console.log(form.value.stock);
     if(this.product == null){
       console.log("empty");
-    }else if(!parseInt(this.inputText)){
+    }else if(!parseInt(form.value.stock)){
       console.log("failed");
     }else{
       const alert = await this.alertController.create({
         cssClass: 'my-custom-class',
         header: 'Success!',
-        message: 'Added ' + this.inputText + ' stock to ' + this.product.name + '.',
+        message: 'Added ' + form.value.stock + ' stock to ' + this.product.name + '.',
         buttons: ['Okay']
       });
 
       await alert.present();
-      this.service.restockQuantity(this.product, parseInt(this.inputText));
+      this.service.restockQuantity(this.product, parseInt(form.value.stock));
       this.service.setAllFalse();
       this.product = null;
-      this.inputText = "";
+      this.stock.quantity = "";
       
     }
   }
